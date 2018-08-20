@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".BookEditor">
+
+    <!-- Book name -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/book_name_label" />
+
+        <!-- Name field -->
+        <EditText
+            android:id="@+id/edit_book_name"
+            style="@style/EditorFieldStyle"
+            android:hint="@string/book_name_label" />
+    </LinearLayout>
+
+    <!-- Book author -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/author_label" />
+
+        <!-- author field -->
+        <EditText
+            android:id="@+id/edit_book_author"
+            style="@style/EditorFieldStyle"
+            android:hint="@string/author_label" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/book_editor_hint"
+        style="@style/itemText"
+        android:text="@string/book_editor_hint"
+        android:textColor="@color/hint_color" />
+
+    <!-- Genre-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/genre_label" />
+
+        <!-- genre spinner -->
+        <Spinner
+            android:id="@+id/edit_book_genre"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/spinner_height"
+            android:paddingLeft="@dimen/edit_field_padding_left"
+            android:paddingRight="@dimen/edit_field_padding_left"
+            android:spinnerMode="dropdown" />
+
+    </LinearLayout>
+
+    <!-- Price -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/price_label" />
+
+        <!-- price field -->
+        <EditText
+            android:id="@+id/edit_book_price"
+            style="@style/EditorFieldStyle"
+            android:hint="@string/price_label"
+            android:inputType="number"
+            android:text="0" />
+
+        <!-- Units for price (cents) -->
+        <TextView
+            android:id="@+id/label_weight_units"
+            style="@style/EditorLabelStyle"
+            android:text="@string/cents_label" />
+
+    </LinearLayout>
+
+    <!--quantity field is not added here since there are plenty of other ways to edit quantity -->
+
+
+</LinearLayout>

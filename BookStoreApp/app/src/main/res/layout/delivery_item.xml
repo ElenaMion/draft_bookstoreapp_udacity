@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/delivery_card_id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/book_name"
+            style="@style/itemTitle" />
+
+        <TextView
+            android:id="@+id/author"
+            style="@style/itemText" />
+
+        <TextView
+            android:id="@+id/quantity_delivered"
+            style="@style/itemText" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/itemText" />
+
+        <TextView
+            android:id="@+id/supplier_name"
+            style="@style/itemText" />
+
+        <TextView
+            android:id="@+id/phone"
+            style="@style/itemText"
+            android:autoLink="phone" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

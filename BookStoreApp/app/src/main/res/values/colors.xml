@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="card_background">#b5bcf9</color>
+    <color name="colorTitle">#a343cf</color>
+
+    <color name="hint_color">#509ce4</color>
+
+    <color name="colorTabBackground">#B3E5FC</color>
+    <color name="colorTabIndicator">#006db3</color>
+    <color name="colorSelectedTabText">#006db3</color>
+    <color name="colorTabText">#039be5</color>
+</resources>

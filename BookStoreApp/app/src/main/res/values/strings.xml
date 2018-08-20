@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">BookStoreApp</string>
+    <string name="update_book_error_msg">Couldn\'t update book!</string>
+    <string name="update_supplier_error_msg">Couldn\'t update supplier!</string>
+    <string name="blood_of_elves">Blood of Elves</string>
+    <string name="sapkowski">Andrzej Sapkowski</string>
+    <string name="supplier_abc">SupplierABC</string>
+    <string name="supplier_def">SupplierDEF</string>
+    <string name="supplier_klmn">SupplierKLMN</string>
+    <string name="roadside_picnic">Roadside Picnic</string>
+    <string name="tower_swallow">The Tower of the Swallow</string>
+    <string name="crime_and_punishment">Crime and Punishment</string>
+    <string name="dostoyevsky">Fyodor Dostoyevsky</string>
+    <string name="strugatsky">Strugatsky brothers</string>
+    <string name="abc_address">Valdemara 120, Riga</string>
+    <string name="def_address">Upes 2, Riga</string>
+    <string name="klmn_old_address">Valdeku 54, Riga</string>
+    <string name="klmn_new_address">Valdeku 54/3, Riga</string>
+    <string name="new_book_insert">New book inserted with id\u0020</string>
+    <string name="exist_book_update">Existing book updated with id\u0020</string>
+    <string name="new_supplier_insert">New supplier inserted with id\u0020</string>
+    <string name="exist_supplier_update">Existing supplier updated with id\u0020</string>
+    <string name="new_delivery_insert">New delivery inserted with id\u0020</string>
+    <string name="book_table_contains">The book table contains\u0020</string>
+    <string name="books_test">\u0020books.</string>
+    <string name="supplier_table_contains">The suppliers table contains\u0020</string>
+    <string name="suppliers">\u0020suppliers.</string>
+    <string name="delivery_table_contains">The deliveries table contains\u0020</string>
+    <string name="deliveries">\u0020deliveries.</string>
+    <string name="supplier">Supplier:\u0020</string>
+
+    <string name="go_to_the_book_details">Go to the book details</string>
+    <string name="fantasy">Fantasy</string>
+    <string name="sci_fi">Sci-Fi</string>
+    <string name="horror">Horror</string>
+    <string name="adventure">Adventure</string>
+    <string name="romance">Romance</string>
+    <string name="drama">Drama</string>
+    <string name="unknown_genre">Unknown genre</string>
+    <string name="books_tab_name">Books</string>
+    <string name="click_here_to_edit_the_suppplier">Click here to edit the suppplier.</string>
+    <string name="suppliers_tab_name">Suppliers</string>
+    <string name="deliveries_tab_name">Deliveries</string>
+
+    <string name="supplier_name_label">Supplier name*</string>
+    <string name="address_label">Address</string>
+    <string name="phone_label">Phone*</string>
+    <string name="supplier_editor_hint">If you enter a supplier name that already exists in the database, then the supplier (phone and address) will get updated. \nIf the supplier name is not yet in the database, a new supplier will be added.</string>
+
+    <string name="supplier_editor_title_new">Add or edit supplier</string>
+    <string name="supplier_editor_title_edit">Edit supplier</string>
+    <string name="supplier_editor_insert_failed">Couldn\'t insert a new supplier! Try again.</string>
+    <string name="supplier_editor_insert_success">A new supplier added.</string>
+    <string name="supplier_editor_update_failed">Couldn\'t update the supplier! Try again.</string>
+    <string name="supplier_editor_update_success">The supplier was updated.</string>
+    <string name="save">Save</string>
+
+    <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+
+    <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
+    <string name="discard">Discard</string>
+
+    <!-- Dialog button text for the option to keep editing the current pet [CHAR LIMIT=20] -->
+    <string name="keep_editing">Keep Editing</string>
+
+    <!-- Dialog message to ask the user to confirm deleting [CHAR LIMIT=NONE] -->
+    <string name="delete_dialog_msg_supplier">Are you sure you want to delete the supplier? Please make sure the are no deliveries from this supplier.</string>
+
+    <!-- Dialog button text for the option to confirm deleting [CHAR LIMIT=20] -->
+    <string name="delete">Delete</string>
+
+    <!-- Dialog button text for the option to cancel deletion of the current pet [CHAR LIMIT=20] -->
+    <string name="cancel">Cancel</string>
+    <string name="supplier_editor_delete_failed">Cannot delete the supplier. Deliveries must be deleted first.</string>
+    <string name="supplier_editor_delete_success">The supplier is deleted.</string>
+    <string name="supplier_name_required">Supplier name is required.</string>
+    <string name="supplier_phone_required">Supplier phone is required.</string>
+    <string name="enter_required">Please enter all the required fields.</string>
+
+    <string name="hint_edit_book_details">Click here to edit book details</string>
+    <string name="list_of_the_book_suppliers_label">List of the book suppliers:</string>
+
+    <string name="book_name_label">Book Name*</string>
+    <string name="author_label">Author*</string>
+    <string name="book_editor_hint">If a book with the entered name and author already exists in the database, then the book will get updated. \nIf the book is not yet in the database, a new book will be added.</string>
+    <string name="genre_label">Genre</string>
+    <string name="price_label">Price*</string>
+    <string name="cents_label">cents</string>
+    <string name="book_editor_title_new">Add or edit a book</string>
+    <string name="book_editor_title_edit">Edit book</string>
+    <string name="pcs_delivered">\u0020pcs delivered.</string>
+    <string name="in_stock">In Stock:\u0020</string>
+    <string name="currency">EUR\u0020</string>
+    <string name="book_editor_insert_failed">Couldn\'t insert a new book.</string>
+    <string name="book_editor_insert_success">A new book added.</string>
+    <string name="book_editor_update_failed">Couldn\'t uodate the book.</string>
+    <string name="book_editor_update_success">The book was updated.</string>
+    <string name="deliveres_deleted_toast">\u0020deliveries deleted.</string>
+    <string name="book_editor_delete_failed">Couldn\'t delete the book.</string>
+    <string name="book_editor_delete_success">The book was deleted.</string>
+    <string name="delete_dialog_msg_book">Are you sure you want to delete the book and all it\'s deliveries?</string>
+    <string name="book_name_required">Book name required.</string>
+    <string name="book_author_required">Book author is required.</string>
+    <string name="book_genre_required">Book requires valid genre.</string>
+    <string name="book_price_required">Book requires valid price.</string>
+    <string name="book_quantity_stock_required">Quantity must be above or equal 0.</string>
+    <string name="quantity_delivered_label">Quantity delivered*</string>
+    <string name="pcs_label">pcs</string>
+    <string name="book_editor_quant_del_hint">Quantity delivered in one delivery (not to be confused with quantity in stock)</string>
+    <string name="delivery_editor_hint">If a book or a supplier already exist in database, they will get updated. Otherwise, new ones will be added.</string>
+    <string name="date_of_delivery_label">Date of delivery</string>
+    <string name="add_delivery_activity_title">Add a delivery</string>
+    <string name="delivery_editor_insert_failed">Couldn\'t insert delivery.</string>
+    <string name="delivery_editor_insert_success">Delivery inserted.</string>
+
+</resources>
