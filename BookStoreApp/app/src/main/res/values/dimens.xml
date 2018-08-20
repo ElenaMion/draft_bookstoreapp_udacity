@@ -24,4 +24,8 @@
     <!-- Margin around floating action buttons -->
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="spinner_height">48dp</dimen>
+
+    <!-- Width and size of +/- buttons for changing quantity-->
+    <dimen name="button_size">40dp</dimen>
+    <dimen name="button_padding">4dp</dimen>
 </resources>

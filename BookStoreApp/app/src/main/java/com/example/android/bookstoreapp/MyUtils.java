@@ -1,13 +1,17 @@
 package com.example.android.bookstoreapp;
 
 import android.app.AlertDialog;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
@@ -209,5 +213,32 @@ public class MyUtils {
             }
             return -1; //an error occured;
         }
+    }
+
+    /**
+     * updates quantity of books in stock
+     *
+     * @param context
+     * @param bookId
+     * @param newQuantity
+     * @return how many rows were updated
+     */
+    public static int updateQuantity(Context context, int bookId, int newQuantity) {
+
+        if (newQuantity < 0) {
+            Toast.makeText(context, context.getString(R.string.error_msg_cant_sell),
+                    Toast.LENGTH_SHORT).show();
+            return 0;
+        }
+
+        Uri bookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, bookId);
+
+        ContentValues book = new ContentValues();
+        book.put(BookEntry.COLUMN_QUANTITY_IN_STOCK, newQuantity);
+
+        //update existing book with new quantity
+        int rowsAffected = context.getContentResolver().update(bookUri, book, null, null);
+
+        return rowsAffected;
     }
 }

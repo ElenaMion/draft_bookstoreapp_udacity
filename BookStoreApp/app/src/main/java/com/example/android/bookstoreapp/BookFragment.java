@@ -12,12 +12,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 
@@ -29,8 +30,12 @@ public class BookFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @BindView(R.id.book_list)
     ListView bookListView;
+    @BindView(R.id.book_empty_view)
+    TextView bookEmptyView;
     @BindView(R.id.fab_book)
     FloatingActionButton fabBook;
+    @BindView(R.id.loading_spinner)
+    ProgressBar loadingSpinner;
 
     private Unbinder unbinder;
 
@@ -57,6 +62,8 @@ public class BookFragment extends Fragment implements LoaderManager.LoaderCallba
             }
         });
 
+        bookListView.setEmptyView(bookEmptyView);
+
         // Setup an Adapter to create a list item for each row of book data in the Cursor.
         mAdapter = new BookCursorAdapter(getContext(), null);
         // Attach the adapter to the ListView.
@@ -79,7 +86,7 @@ public class BookFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-   //     getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        //     getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @NonNull
@@ -93,10 +100,12 @@ public class BookFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        // Swap the new cursor in. (The framework will take care of closing the
-        // old cursor once we return.)
         mAdapter.swapCursor(data);
-
+        loadingSpinner.setVisibility(View.GONE);
+        if (data != null && data.getCount() > 0) {
+            mAdapter.swapCursor(data);
+        }
+        bookEmptyView.setText(R.string.book_empty_view);
     }
 
     @Override

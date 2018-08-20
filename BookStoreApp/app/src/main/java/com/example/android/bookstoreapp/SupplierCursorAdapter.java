@@ -1,12 +1,17 @@
 package com.example.android.bookstoreapp;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
 
@@ -14,10 +19,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SupplierCursorAdapter extends CursorAdapter {
-
+    private Context mContext;
 
     public SupplierCursorAdapter(Context context, Cursor c) {
         super(context, c, 0);
+        mContext = context;
     }
 
     /**
@@ -56,13 +62,32 @@ public class SupplierCursorAdapter extends CursorAdapter {
 
         // Read the supplier attributes from the Cursor for the current supplier
         String supplierName = cursor.getString(nameColumnIndex);
-        String phone = cursor.getString(phoneColumnIndex);
+        final String phone = cursor.getString(phoneColumnIndex);
         String address = cursor.getString(addressColumnIndex);
 
         // Update the TextViews with the attributes for the current supplier
         viewHolder.tvSupplierName.setText(supplierName);
         viewHolder.tvPhone.setText(phone);
         viewHolder.tvAddress.setText(address);
+
+        viewHolder.callSuppliertn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL); //can be changed to ACTION_CALL, if I want to call immediately
+                callIntent.setData(Uri.parse("tel:" + phone));
+
+                try {
+                    mContext.startActivity(callIntent);
+                } catch (SecurityException se) {
+                    Toast.makeText(mContext, R.string.security_error_msg, Toast.LENGTH_SHORT).show();
+                    se.printStackTrace();
+                } catch (ActivityNotFoundException anfe) {
+                    Toast.makeText(mContext, R.string.no_app_error_msg, Toast.LENGTH_SHORT).show();
+                    anfe.printStackTrace();
+                }
+            }
+
+        });
     }
 
     public static class SupplierViewHolder {
@@ -72,6 +97,8 @@ public class SupplierCursorAdapter extends CursorAdapter {
         TextView tvPhone;
         @BindView(R.id.address)
         TextView tvAddress;
+        @BindView(R.id.call_supplier_button)
+        Button callSuppliertn;
 
         public SupplierViewHolder(View view) {
             ButterKnife.bind(this, view);

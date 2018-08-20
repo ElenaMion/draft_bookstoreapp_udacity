@@ -35,7 +35,7 @@ import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
 public class BookEditor extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    public static final String LOG_TAG = SupplierEditor.class.getSimpleName();
+    public static final String LOG_TAG = BookEditor.class.getSimpleName();
 
     private static final int EDIT_BOOK_LOADER = 5;
 

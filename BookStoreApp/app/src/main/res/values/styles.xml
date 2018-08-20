@@ -70,4 +70,11 @@
         <item name="android:src">@drawable/ic_list_add</item>
     </style>
 
+    <!-- style for buttons for decreasing/increasing quantity -->
+    <style name="QuantityButtons" parent="@android:style/Widget">
+        <item name="android:layout_width">@dimen/button_size</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:padding">@dimen/button_padding</item>
+    </style>
+
 </resources>

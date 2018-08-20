@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="card_background">#b5bcf9</color>
+    <color name="card_supplier_background">#e0f7fa</color>
     <color name="colorTitle">#a343cf</color>
 
     <color name="hint_color">#509ce4</color>
