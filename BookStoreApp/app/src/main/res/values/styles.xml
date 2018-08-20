@@ -1,0 +1,73 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- style for an item title -->
+    <style name="itemTitle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/title_font_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_margin">@dimen/title_margin</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorTitle</item>
+    </style>
+
+    <!-- style for an item fields -->
+    <style name="itemText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/text_font_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">@dimen/text_margin</item>
+        <item name="android:textColor">@color/colorTitle</item>
+    </style>
+
+    <!-- Style for a tab that displays a category name -->
+    <style name="ItemTab" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/colorTabIndicator</item>
+        <item name="tabSelectedTextColor">@color/colorSelectedTabText</item>
+        <item name="android:background">@color/colorTabBackground</item>
+    </style>
+
+    <!-- Style for a label in the editor -->
+    <style name="EditorLabelStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">@dimen/editfield_label_padding</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+    </style>
+
+    <!-- Style for an EditText field in the editor -->
+    <style name="EditorFieldStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:paddingLeft">@dimen/edit_field_padding_left</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <!-- Style for FABs -->
+    <style name="FabStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/ic_list_add</item>
+    </style>
+
+</resources>
