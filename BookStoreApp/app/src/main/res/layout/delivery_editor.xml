@@ -150,6 +150,7 @@
             <EditText
                 android:id="@+id/edit_delivery_date"
                 style="@style/EditorFieldStyle"
+                android:focusable="false"
                 android:hint="@string/date_of_delivery_label"
                 android:inputType="date" />
 

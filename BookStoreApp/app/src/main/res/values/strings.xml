@@ -126,5 +126,6 @@
     <string name="no_app_error_msg">ActivityNotFoundException. Install an app to call.</string>
     <string name="security_error_msg">SecurityException. Check permissions.</string>
     <string name="quantity_in_stock_label">Quantity in Stock:</string>
+    <string name="wrong_date_format_error_msg">Wrong date format.</string>
 
 </resources>

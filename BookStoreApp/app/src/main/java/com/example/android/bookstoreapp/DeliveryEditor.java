@@ -100,6 +100,9 @@ public class DeliveryEditor extends AppCompatActivity {
         mSupplierNameEditText.setOnTouchListener(mDeliveryTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mDeliveryTouchListener);
         mSupplierAddressEditText.setOnTouchListener(mDeliveryTouchListener);
+
+        //TODO test
+        DeliveryDatePicker deliveryDatePicker = new DeliveryDatePicker (DeliveryEditor.this, R.id.edit_delivery_date);
     }
 
     /**

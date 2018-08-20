@@ -45,7 +45,7 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
     private Uri mCurrentBookDetUri;
 
     SupplierCursorAdapter mAdapter;
-    private static final int LOADER_ID = 2;
+    private static final int SUPPLIER_LOADER_ID = 2;
     static final String[] SUPPLIER_PROJECTION = new String[]{SupplierEntry.TABLE_NAME + "." + SupplierEntry._ID, SupplierEntry.COLUMN_SUPPLIER_NAME, SupplierEntry.COLUMN_PHONE, SupplierEntry.COLUMN_ADDRESS};
     static final String SUPPLIER_SORT_ORDER = SupplierEntry.COLUMN_SUPPLIER_NAME + " ASC ";
 
@@ -96,7 +96,7 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
             }
         });
 
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        getActivity().getSupportLoaderManager().initLoader(SUPPLIER_LOADER_ID, null, this);
         return view;
     }
 
@@ -114,7 +114,7 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
         if (mCurrentBookDetUri == null) {
             return new CursorLoader(getContext(), SupplierEntry.CONTENT_URI,
                     SUPPLIER_PROJECTION, null, null, SUPPLIER_SORT_ORDER);
-        } else{
+        } else {
             return new CursorLoader(getContext(), mCurrentBookDetUri,
                     SUPPLIER_PROJECTION, null, null, SUPPLIER_SORT_ORDER);
         }
@@ -122,8 +122,7 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        // Swap the new cursor in. (The framework will take care of closing the
-        // old cursor once we return.)
+        Log.e(LOG_TAG, "Suppliers onLoadFinished ");
         mAdapter.swapCursor(data);
     }
 

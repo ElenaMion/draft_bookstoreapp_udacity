@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ParseException;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,10 @@ import com.example.android.bookstoreapp.data.BookDbHelper;
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
 import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BookProvider extends ContentProvider {
 
@@ -292,7 +297,17 @@ public class BookProvider extends ContentProvider {
             throw new IllegalArgumentException(getContext().getString(R.string.delivery_supplier_id_required));
         }
 
-        //TODO check date
+        // Check that the delivery date is in proper format
+        String date = values.getAsString(DeliveryEntry.COLUMN_DATE);
+        Log.e(LOG_TAG, "Date passed to Book Provider " + date);
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            df.setLenient(false);
+            df.parse(date);
+        } catch (java.text.ParseException e) {
+            throw new IllegalArgumentException(getContext().getString(R.string.wrong_date_format_error_msg));
+        }
+
 
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();

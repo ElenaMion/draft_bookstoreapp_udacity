@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,18 +27,21 @@ import butterknife.Unbinder;
 
 public class DeliveryFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    public static final String LOG_TAG = DeliveryFragment.class.getSimpleName();
 
     @BindView(R.id.delivery_list)
     ListView deliveryListView;
     @BindView(R.id.delivery_empty_view)
     TextView deliveryEmptyView;
+//    @BindView(R.id.delivery_loading_spinner)
+    View deliveryLoadingSpinner;
     @BindView(R.id.fab_delivery)
     FloatingActionButton fabDelivery;
 
     private Unbinder unbinder;
 
     DeliveryCursorAdapter mAdapter;
-    private static final int LOADER_ID = 3;
+    private static final int DELIVERY_LOADER_ID = 3;
     static final String[] DELIVERY_PROJECTION = new String[]{
             DeliveryEntry.TABLE_NAME + "." + DeliveryEntry._ID,
             DeliveryEntry.COLUMN_BOOK_ID,
@@ -52,7 +56,7 @@ public class DeliveryFragment extends Fragment implements LoaderManager.LoaderCa
             DeliveryEntry.COLUMN_DATE
     };
 
-    static final String DELIVERY_SORT_ORDER = BookEntry.COLUMN_BOOK_NAME + " ASC, " +  DeliveryEntry.COLUMN_DATE + " DESC ";
+    static final String DELIVERY_SORT_ORDER = BookEntry.COLUMN_BOOK_NAME + " ASC, " + DeliveryEntry.COLUMN_DATE + " DESC ";
 
 
     public DeliveryFragment() {
@@ -78,29 +82,26 @@ public class DeliveryFragment extends Fragment implements LoaderManager.LoaderCa
         mAdapter = new DeliveryCursorAdapter(getContext(), null);
         // Attach the adapter to the ListView.
         deliveryListView.setAdapter(mAdapter);
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        getActivity().getSupportLoaderManager().initLoader(DELIVERY_LOADER_ID, null, this);
         return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
- //       getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        //       getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        // Now create and return a CursorLoader that will take care of
-        // creating a Cursor for the data being displayed.
         return new CursorLoader(getContext(), DeliveryEntry.CONTENT_URI,
                 DELIVERY_PROJECTION, null, null, DELIVERY_SORT_ORDER);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        // Swap the new cursor in. (The framework will take care of closing the
-        // old cursor once we return.)
+
         mAdapter.swapCursor(data);
 
     }

@@ -36,8 +36,7 @@
 
         <TextView
             android:id="@+id/phone"
-            style="@style/itemText"
-            android:autoLink="phone" />
+            style="@style/itemText" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

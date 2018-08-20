@@ -9,9 +9,11 @@
         android:id="@+id/delivery_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/delivery_empty_view"
         style="@style/itemText"
+        android:layout_centerInParent="true"
         android:text="@string/deliveries_empty_view"
         android:textColor="@color/hint_color" />
 
