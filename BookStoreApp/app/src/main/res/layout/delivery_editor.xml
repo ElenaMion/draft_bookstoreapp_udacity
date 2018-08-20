@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_margin"
+    tools:context=".DeliveryEditor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/delivery_editor_hint"
+            style="@style/itemText"
+            android:text="@string/delivery_editor_hint"
+            android:textColor="@color/hint_color" />
+
+        <!-- Book name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/book_name_label" />
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/edit_book_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/book_name_label" />
+        </LinearLayout>
+
+        <!-- Book author -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/author_label" />
+
+            <!-- author field -->
+            <EditText
+                android:id="@+id/edit_book_author"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/author_label" />
+        </LinearLayout>
+
+        <!-- Genre-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/genre_label" />
+
+            <!-- genre spinner -->
+            <Spinner
+                android:id="@+id/edit_book_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/spinner_height"
+                android:paddingLeft="@dimen/edit_field_padding_left"
+                android:paddingRight="@dimen/edit_field_padding_left"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+        <!-- Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/price_label" />
+
+            <!-- price field -->
+            <EditText
+                android:id="@+id/edit_book_price"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/price_label"
+                android:inputType="number"
+                android:text="0" />
+
+            <!-- Units for price (cents) -->
+            <TextView
+                android:id="@+id/label_weight_units"
+                style="@style/EditorLabelStyle"
+                android:text="@string/cents_label" />
+
+        </LinearLayout>
+
+        <!-- Quantity delivered in one delivery (not to be confused with quantity in stock) -->
+        <TextView
+            android:id="@+id/book_editor_quant_del_hint"
+            style="@style/itemText"
+            android:text="@string/book_editor_quant_del_hint"
+            android:textColor="@color/hint_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/quantity_delivered_label" />
+
+            <!-- Quantity delivered field -->
+            <EditText
+                android:id="@+id/edit_delivery_quantity"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/quantity_delivered_label"
+                android:inputType="number"
+                android:text="0" />
+
+            <!-- Units for quantity delivered (pcs) -->
+            <TextView
+                android:id="@+id/label_quantity_units"
+                style="@style/EditorLabelStyle"
+                android:text="@string/pcs_label" />
+
+        </LinearLayout>
+
+        <!-- Date of delivery-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/date_of_delivery_label" />
+
+            <!-- date field -->
+            <EditText
+                android:id="@+id/edit_delivery_date"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/date_of_delivery_label"
+                android:inputType="date" />
+
+        </LinearLayout>
+
+        <!-- Supplier name -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/supplier_name_label" />
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/edit_supplier_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/supplier_name_label" />
+        </LinearLayout>
+
+        <!-- Supplier phone -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/phone_label" />
+
+            <!-- phone field -->
+            <EditText
+                android:id="@+id/edit_supplier_phone"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/phone_label"
+                android:inputType="phone" />
+
+        </LinearLayout>
+
+        <!-- Supplier address -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                style="@style/EditorLabelStyle"
+                android:text="@string/address_label" />
+
+            <!-- address field -->
+            <EditText
+                android:id="@+id/edit_supplier_address"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/address_label" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

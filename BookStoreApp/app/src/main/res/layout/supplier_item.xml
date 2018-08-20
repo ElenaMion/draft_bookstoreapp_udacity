@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/supplier_card_id"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardUseCompatPadding="true"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/card_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/supplier_name"
+            style="@style/itemTitle" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:autoLink="phone"
+            style="@style/itemText" />
+
+        <TextView
+            android:id="@+id/hint"
+            style="@style/itemText"
+            android:text="@string/click_here_to_edit_the_suppplier"
+            android:textColor="@color/hint_color" />
+
+        <TextView
+            android:id="@+id/address"
+            style="@style/itemText" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

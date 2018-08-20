@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".SupplierEditor">
+
+    <!-- Supplier name -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/supplier_name_label" />
+
+        <!-- Name field -->
+        <EditText
+            android:id="@+id/edit_supplier_name"
+            style="@style/EditorFieldStyle"
+            android:hint="@string/supplier_name_label" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/supplier_editor_hint"
+        style="@style/itemText"
+        android:text="@string/supplier_editor_hint"
+        android:textColor="@color/hint_color" />
+
+    <!-- Supplier phone -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/phone_label" />
+
+        <!-- phone field -->
+        <EditText
+            android:id="@+id/edit_supplier_phone"
+            style="@style/EditorFieldStyle"
+            android:hint="@string/phone_label"
+            android:inputType="phone" />
+
+    </LinearLayout>
+
+    <!-- Supplier address -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/address_label" />
+
+        <!-- address field -->
+        <EditText
+            android:id="@+id/edit_supplier_address"
+            style="@style/EditorFieldStyle"
+            android:hint="@string/address_label" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
