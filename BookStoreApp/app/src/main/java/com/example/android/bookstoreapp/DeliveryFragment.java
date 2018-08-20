@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
@@ -28,6 +29,8 @@ public class DeliveryFragment extends Fragment implements LoaderManager.LoaderCa
 
     @BindView(R.id.delivery_list)
     ListView deliveryListView;
+    @BindView(R.id.delivery_empty_view)
+    TextView deliveryEmptyView;
     @BindView(R.id.fab_delivery)
     FloatingActionButton fabDelivery;
 
@@ -68,6 +71,8 @@ public class DeliveryFragment extends Fragment implements LoaderManager.LoaderCa
                 startActivity(intent);
             }
         });
+
+        deliveryListView.setEmptyView(deliveryEmptyView);
 
         // Setup an Adapter to create a list item for each row of supplier data in the Cursor.
         mAdapter = new DeliveryCursorAdapter(getContext(), null);

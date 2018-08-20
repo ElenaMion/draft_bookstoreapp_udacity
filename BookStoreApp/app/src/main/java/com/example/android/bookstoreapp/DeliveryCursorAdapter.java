@@ -2,6 +2,7 @@ package com.example.android.bookstoreapp;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,12 @@ public class DeliveryCursorAdapter extends CursorAdapter {
         String bookName = cursor.getString(bookNameColumnIndex);
         String author = cursor.getString(authorColumnIndex);
         String quantityDelivered = cursor.getString(quantityDelivColumnIndex) + context.getString(R.string.pcs_delivered);
-        String date = MyUtils.displayDate(cursor.getString(dateColumnIndex));
+
+        String date = cursor.getString(dateColumnIndex);
+        if (!TextUtils.isEmpty(date)){
+            date = MyUtils.displayDate(cursor.getString(dateColumnIndex));
+        }
+
         String supplierName = cursor.getString(supplierNameColumnIndex);
         String phone = cursor.getString(phoneColumnIndex);
 

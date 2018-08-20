@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 
@@ -29,6 +30,8 @@ public class BookFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @BindView(R.id.book_list)
     ListView bookListView;
+    @BindView(R.id.book_empty_view)
+    TextView bookEmptyView;
     @BindView(R.id.fab_book)
     FloatingActionButton fabBook;
 
@@ -56,6 +59,8 @@ public class BookFragment extends Fragment implements LoaderManager.LoaderCallba
                 startActivity(intent);
             }
         });
+
+        bookListView.setEmptyView(bookEmptyView);
 
         // Setup an Adapter to create a list item for each row of book data in the Cursor.
         mAdapter = new BookCursorAdapter(getContext(), null);

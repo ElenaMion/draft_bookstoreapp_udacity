@@ -37,7 +37,7 @@ import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
  */
 public class DeliveryEditor extends AppCompatActivity {
     //TODO
-    public static final String LOG_TAG = SupplierEditor.class.getSimpleName();
+    public static final String LOG_TAG = DeliveryEditor.class.getSimpleName();
 
     // EditText fields and spinner from the layout file
     @BindView(R.id.edit_book_name)
@@ -269,9 +269,15 @@ public class DeliveryEditor extends AppCompatActivity {
 
             Cursor cursorQuantityStock = getContentResolver().query(bookUri, projectionQuantityStock, selectionQuantityStock, selectionArgsQuantityStock, null);
 
-            int oldQuantityInStockColIndex = cursorQuantityStock.getColumnIndex(BookEntry.COLUMN_QUANTITY_IN_STOCK);
-            int oldQuantityInStock = cursorQuantityStock.getInt(oldQuantityInStockColIndex);
-            int newQuantity = oldQuantityInStock + quantityDelivered;
+            int newQuantity = quantityDelivered;
+
+            if (cursorQuantityStock.moveToFirst()) {
+                int oldQuantityInStockColIndex = cursorQuantityStock.getColumnIndex(BookEntry.COLUMN_QUANTITY_IN_STOCK);
+                int oldQuantityInStock = cursorQuantityStock.getInt(oldQuantityInStockColIndex);
+                newQuantity = oldQuantityInStock + quantityDelivered;
+
+            }
+
             book.put(BookEntry.COLUMN_QUANTITY_IN_STOCK, newQuantity);
 
             //update existing book with new values
@@ -311,9 +317,9 @@ public class DeliveryEditor extends AppCompatActivity {
         }
 
         ContentValues supplier = new ContentValues();
-        supplier.put(BookEntry.COLUMN_BOOK_NAME, supplierNameStr);
-        supplier.put(BookEntry.COLUMN_BOOK_AUTHOR, phoneStr);
-        supplier.put(BookEntry.COLUMN_PRICE, addressStr);
+        supplier.put(SupplierEntry.COLUMN_SUPPLIER_NAME, supplierNameStr);
+        supplier.put(SupplierEntry.COLUMN_PHONE, phoneStr);
+        supplier.put(SupplierEntry.COLUMN_ADDRESS, addressStr);
 
         if (supplierExists == -1) {
             // This is a NEW supplier
@@ -336,6 +342,8 @@ public class DeliveryEditor extends AppCompatActivity {
             //update existing supplier with new values
             Uri supplierUri = ContentUris.withAppendedId(SupplierEntry.CONTENT_URI, supplierExists);
             int rowsAffected = getContentResolver().update(supplierUri, supplier, null, null);
+
+            Log.e(LOG_TAG, " Supplier with url " + supplierUri + " updated. Inside Delivery.");
 
             // Show a toast message depending on whether or not the update was successful.
             if (rowsAffected == 0) {

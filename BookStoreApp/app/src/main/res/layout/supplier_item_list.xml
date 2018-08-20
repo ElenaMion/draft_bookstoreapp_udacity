@@ -9,6 +9,11 @@
         android:id="@+id/supplier_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/supplier_empty_view"
+        style="@style/itemText"
+        android:text="@string/supplier_empty_view"
+        android:textColor="@color/hint_color" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_supplier"

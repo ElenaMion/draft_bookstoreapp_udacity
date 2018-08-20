@@ -179,11 +179,12 @@ public class BookProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         final int match = sUriMatcher.match(uri);
         switch (match) {
-            //TODO others
             case BOOKS:
                 return insertBook(uri, values);
             case SUPPLIERS:
                 return insertSupplier(uri, values);
+            case DELIVERIES:
+                return insertDelivery(uri, values);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
@@ -247,7 +248,7 @@ public class BookProvider extends ContentProvider {
             throw new IllegalArgumentException(getContext().getString(R.string.book_price_required));
         }
 
-        // Check that the quantity in stock is greater than or equal to 0 cents
+        // Check that the quantity in stock is greater than or equal to 0
         Integer quantityInStock = values.getAsInteger(BookEntry.COLUMN_QUANTITY_IN_STOCK);
         if (quantityInStock != null && quantityInStock < 0) {
             throw new IllegalArgumentException(getContext().getString(R.string.book_quantity_stock_required));
@@ -258,6 +259,46 @@ public class BookProvider extends ContentProvider {
 
         // Insert the new pet with the given values
         long id = database.insert(BookEntry.TABLE_NAME, null, values);
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Notify all listeners that the data has changed for the books content URI
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);
+    }
+
+    private Uri insertDelivery(Uri uri, ContentValues values) {
+
+        // Check that the quantity delivered is greater than or equal to 0
+        Integer quantityDelivered = values.getAsInteger(DeliveryEntry.COLUMN_QUANTITY_DELIVERED);
+        if (quantityDelivered != null && quantityDelivered < 0) {
+            throw new IllegalArgumentException(getContext().getString(R.string.delivery_quantity_del_required));
+        }
+
+        // Check that the book id is not negative
+        Integer book_id = values.getAsInteger(DeliveryEntry.COLUMN_BOOK_ID);
+        if (book_id != null && book_id < 0) {
+            throw new IllegalArgumentException(getContext().getString(R.string.delivery_book_id_required));
+        }
+
+        // Check that the quantity delivered is greater than or equal to 0
+        Integer supplier_id = values.getAsInteger(DeliveryEntry.COLUMN_SUPPLIER_ID);
+        if (supplier_id != null && supplier_id < 0) {
+            throw new IllegalArgumentException(getContext().getString(R.string.delivery_supplier_id_required));
+        }
+
+        //TODO check date
+
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert the new pet with the given values
+        long id = database.insert(DeliveryEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
@@ -316,8 +357,6 @@ public class BookProvider extends ContentProvider {
             selection, @Nullable String[] selectionArgs) {
         final int match = sUriMatcher.match(uri);
         switch (match) {
-
-            //TODO add for other URI
             case BOOKS:
                 return updateBook(uri, values, selection, selectionArgs);
             case BOOK_ID:

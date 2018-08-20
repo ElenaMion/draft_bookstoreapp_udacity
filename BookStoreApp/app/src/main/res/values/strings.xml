@@ -113,5 +113,12 @@
     <string name="add_delivery_activity_title">Add a delivery</string>
     <string name="delivery_editor_insert_failed">Couldn\'t insert delivery.</string>
     <string name="delivery_editor_insert_success">Delivery inserted.</string>
+    <string name="delivery_quantity_del_required">Please enter a valid quantity delivered.</string>
+    <string name="delivery_book_id_required">Book id is required.</string>
+    <string name="delivery_supplier_id_required">Supplier id is required.</string>
+
+    <string name="supplier_empty_view">No suppliers in DB. \nAdd a new supplier or a new delivery using FABs in the suppliers list or the deliveries list.</string>
+    <string name="book_empty_view">No books in DB. \nAdd a new book or a new delivery using FABs in the books list or the deliveries list.</string>
+    <string name="deliveries_empty_view">No deliveries in DB. \nAdd a new delivery using FAB below.</string>
 
 </resources>
