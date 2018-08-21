@@ -98,7 +98,6 @@
 
     </LinearLayout>
 
-    <!--quantity field is not added here since there are plenty of other ways to edit quantity -->
-
+    <!--quantity field is not added here since there are plenty of other ways to edit quantity, e.g., adding a delivery or using Sale and +/- buttons -->
 
 </LinearLayout>

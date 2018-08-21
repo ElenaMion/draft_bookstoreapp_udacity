@@ -129,14 +129,14 @@ public final class BookStoreContract {
         public final static String COLUMN_SUPPLIER_NAME = "supplier_name";
 
         /**
-         * Name of the supplier.
+         * Phone of the supplier.
          * <p>
          * Type: TEXT
          */
         public final static String COLUMN_PHONE = "phone";
 
         /**
-         * Name of the supplier.
+         * Address of the supplier.
          * <p>
          * Type: TEXT
          */

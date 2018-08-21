@@ -2,14 +2,12 @@ package com.example.android.bookstoreapp;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 
@@ -82,7 +80,7 @@ public class BookCursorAdapter extends CursorAdapter {
             @Override
             public void onClick(View v) {
                 int newQuantity = quantityInStockInt - 1;
-                int bookRowsupdated = MyUtils.updateQuantity(mContext, bookId, newQuantity);
+                MyUtils.updateQuantity(mContext, bookId, newQuantity);
             }
         });
     }

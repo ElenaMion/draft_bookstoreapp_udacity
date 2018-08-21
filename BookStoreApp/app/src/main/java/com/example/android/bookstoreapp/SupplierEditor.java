@@ -1,6 +1,5 @@
 package com.example.android.bookstoreapp;
 
-import android.app.FragmentTransaction;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -23,12 +22,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
+import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
-import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
 
 /**
  * Allows user to create a new supplier or edit an existing one.
@@ -246,7 +245,7 @@ public class SupplierEditor extends AppCompatActivity implements
             case R.id.action_save:
                 try {
                     saveSupplier();
-                } catch (IllegalArgumentException e){
+                } catch (IllegalArgumentException e) {
                     Toast.makeText(this, R.string.enter_required,
                             Toast.LENGTH_LONG).show();
                     Log.e(LOG_TAG, "Can't save supplier: IllegalArgumentException " + e.toString());

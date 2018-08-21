@@ -3,9 +3,7 @@ package com.example.android.bookstoreapp;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -20,23 +18,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
+import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
+import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
-import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
-import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
 
 /**
  * Class for entering an information about a delivery - includes book info, supplier info and delivery info.
  * Books and suppliers can be added or edited through a delivery.
  */
 public class DeliveryEditor extends AppCompatActivity {
-    //TODO
     public static final String LOG_TAG = DeliveryEditor.class.getSimpleName();
 
     // EditText fields and spinner from the layout file
@@ -71,7 +67,7 @@ public class DeliveryEditor extends AppCompatActivity {
     private int mGenre = BookEntry.GENRE_UNKNOWN;
 
     /**
-     * Boolean flag that keeps track of whether the supplier has been edited (true) or not (false)
+     * Boolean flag that keeps track of whether the delivery has been edited (true) or not (false)
      */
     private boolean mDeliveryHasChanged = false;
 
@@ -100,6 +96,8 @@ public class DeliveryEditor extends AppCompatActivity {
         mSupplierNameEditText.setOnTouchListener(mDeliveryTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mDeliveryTouchListener);
         mSupplierAddressEditText.setOnTouchListener(mDeliveryTouchListener);
+
+        DeliveryDatePicker deliveryDatePicker = new DeliveryDatePicker(DeliveryEditor.this, R.id.edit_delivery_date);
     }
 
     /**
@@ -151,7 +149,7 @@ public class DeliveryEditor extends AppCompatActivity {
     }
 
     /**
-     * Get user input from editor and save supplier into database.
+     * Get user input from editor and save delivery into database.
      */
     private void saveDelivery() {
         String bookNameStr = mBookNameEditText.getText().toString().trim();
@@ -275,7 +273,6 @@ public class DeliveryEditor extends AppCompatActivity {
                 int oldQuantityInStockColIndex = cursorQuantityStock.getColumnIndex(BookEntry.COLUMN_QUANTITY_IN_STOCK);
                 int oldQuantityInStock = cursorQuantityStock.getInt(oldQuantityInStockColIndex);
                 newQuantity = oldQuantityInStock + quantityDelivered;
-
             }
 
             book.put(BookEntry.COLUMN_QUANTITY_IN_STOCK, newQuantity);

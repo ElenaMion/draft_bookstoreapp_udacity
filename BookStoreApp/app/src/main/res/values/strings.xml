@@ -1,33 +1,5 @@
 <resources>
     <string name="app_name">BookStoreApp</string>
-    <string name="update_book_error_msg">Couldn\'t update book!</string>
-    <string name="update_supplier_error_msg">Couldn\'t update supplier!</string>
-    <string name="blood_of_elves">Blood of Elves</string>
-    <string name="sapkowski">Andrzej Sapkowski</string>
-    <string name="supplier_abc">SupplierABC</string>
-    <string name="supplier_def">SupplierDEF</string>
-    <string name="supplier_klmn">SupplierKLMN</string>
-    <string name="roadside_picnic">Roadside Picnic</string>
-    <string name="tower_swallow">The Tower of the Swallow</string>
-    <string name="crime_and_punishment">Crime and Punishment</string>
-    <string name="dostoyevsky">Fyodor Dostoyevsky</string>
-    <string name="strugatsky">Strugatsky brothers</string>
-    <string name="abc_address">Valdemara 120, Riga</string>
-    <string name="def_address">Upes 2, Riga</string>
-    <string name="klmn_old_address">Valdeku 54, Riga</string>
-    <string name="klmn_new_address">Valdeku 54/3, Riga</string>
-    <string name="new_book_insert">New book inserted with id\u0020</string>
-    <string name="exist_book_update">Existing book updated with id\u0020</string>
-    <string name="new_supplier_insert">New supplier inserted with id\u0020</string>
-    <string name="exist_supplier_update">Existing supplier updated with id\u0020</string>
-    <string name="new_delivery_insert">New delivery inserted with id\u0020</string>
-    <string name="book_table_contains">The book table contains\u0020</string>
-    <string name="books_test">\u0020books.</string>
-    <string name="supplier_table_contains">The suppliers table contains\u0020</string>
-    <string name="suppliers">\u0020suppliers.</string>
-    <string name="delivery_table_contains">The deliveries table contains\u0020</string>
-    <string name="deliveries">\u0020deliveries.</string>
-    <string name="supplier">Supplier:\u0020</string>
 
     <string name="go_to_the_book_details">Go to the book details</string>
     <string name="fantasy">Fantasy</string>
@@ -38,7 +10,7 @@
     <string name="drama">Drama</string>
     <string name="unknown_genre">Unknown genre</string>
     <string name="books_tab_name">Books</string>
-    <string name="click_here_to_edit_the_supplier">Click here to edit the supplier.</string>
+    <string name="click_here_to_edit_the_supplier">Click here to edit or delete the supplier.</string>
     <string name="suppliers_tab_name">Suppliers</string>
     <string name="deliveries_tab_name">Deliveries</string>
 
@@ -78,7 +50,7 @@
     <string name="supplier_phone_required">Supplier phone is required.</string>
     <string name="enter_required">Please enter all the required fields.</string>
 
-    <string name="hint_edit_book_details">Click here to edit book details</string>
+    <string name="hint_edit_book_details">Click here to edit book details or delete the book</string>
     <string name="list_of_the_book_suppliers_label">List of the book suppliers:</string>
 
     <string name="book_name_label">Book Name*</string>
@@ -126,5 +98,9 @@
     <string name="no_app_error_msg">ActivityNotFoundException. Install an app to call.</string>
     <string name="security_error_msg">SecurityException. Check permissions.</string>
     <string name="quantity_in_stock_label">Quantity in Stock:</string>
+    <string name="wrong_date_format_error_msg">Wrong date format.</string>
 
+    <string name="find_supplier_error_msg">An error occured while searching for the supplier</string>
+    <string name="find_book_error_msg">An error occured while searching for the book</string>
+    <string name="no_suppliers_for_book">No suppliers for the given book.</string>
 </resources>

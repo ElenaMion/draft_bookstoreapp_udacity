@@ -13,11 +13,12 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.android.bookstoreapp.R;
-import com.example.android.bookstoreapp.SupplierEditor;
-import com.example.android.bookstoreapp.data.BookDbHelper;
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
 import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class BookProvider extends ContentProvider {
 
@@ -44,12 +45,12 @@ public class BookProvider extends ContentProvider {
     private static final int DELIVERIES = 300;
 
     /**
-     * URI matcher code for the content URI for deliveries for a certain book
+     * URI matcher code for the content URI for deliveries of a certain book
      */
     private static final int DELIVERY_BOOK_ID = 401;
 
     /**
-     * URI matcher code for the content URI for deliveries for a certain book
+     * URI matcher code for the content URI for deliveries from a certain supplier
      */
     private static final int DELIVERY_SUPPLIER_ID = 501;
 
@@ -210,7 +211,7 @@ public class BookProvider extends ContentProvider {
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // Insert the new pet with the given values
+        // Insert the new supplier with the given values
         long id = database.insert(SupplierEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -257,7 +258,7 @@ public class BookProvider extends ContentProvider {
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // Insert the new pet with the given values
+        // Insert the new book with the given values
         long id = database.insert(BookEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -292,12 +293,21 @@ public class BookProvider extends ContentProvider {
             throw new IllegalArgumentException(getContext().getString(R.string.delivery_supplier_id_required));
         }
 
-        //TODO check date
+        // Check that the delivery date is in proper format
+        String date = values.getAsString(DeliveryEntry.COLUMN_DATE);
+        Log.e(LOG_TAG, "Date passed to Book Provider " + date);
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            df.setLenient(false);
+            df.parse(date);
+        } catch (java.text.ParseException e) {
+            throw new IllegalArgumentException(getContext().getString(R.string.wrong_date_format_error_msg));
+        }
 
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // Insert the new pet with the given values
+        // Insert the new delivery with the given values
         long id = database.insert(DeliveryEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {

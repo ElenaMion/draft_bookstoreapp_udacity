@@ -7,10 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
@@ -98,7 +95,7 @@ public class MyUtils {
     public static void showUnsavedChangesDialog(Context context,
                                                 DialogInterface.OnClickListener discardButtonClickListener) {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(R.string.unsaved_changes_dialog_msg);
         builder.setPositiveButton(R.string.discard, discardButtonClickListener);
@@ -119,7 +116,7 @@ public class MyUtils {
     public static void showDeleteConfirmationDialog(Context context,
                                                     DialogInterface.OnClickListener deleteButtonClickListener, String message) {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(message);
         builder.setPositiveButton(R.string.delete, deleteButtonClickListener);
@@ -143,7 +140,7 @@ public class MyUtils {
      *
      * @param context
      * @param supplierName
-     * @return supplier _ID if it exists; return -1 if it doesn't exist
+     * @return supplier _ID if it exists; return -1 if it doesn't exist in DB
      */
     public static int supplierExistsInDB(Context context, String supplierName) {
         String[] projection = {
@@ -167,7 +164,7 @@ public class MyUtils {
                     return foundSupplierId;
                 }
             } catch (Exception e) {
-                Log.e(context.getClass().getSimpleName(), context.getString(R.string.update_supplier_error_msg) + e);
+                Log.e(context.getClass().getSimpleName(), context.getString(R.string.find_supplier_error_msg) + e);
             } finally {
                 cursor.close();
             }
@@ -175,14 +172,13 @@ public class MyUtils {
         }
     }
 
-
     /**
      * check if a book with the given name exists in the database\
      *
      * @param context
      * @param bookName
      * @param author
-     * @return book _ID if it exists; return -1 if it doesn't exist
+     * @return book _ID if it exists; return -1 if it doesn't exist in DB
      */
     public static int bookExistsInDB(Context context, String bookName, String author) {
         String[] projection = {
@@ -207,7 +203,7 @@ public class MyUtils {
                     return foundBookId;
                 }
             } catch (Exception e) {
-                Log.e(context.getClass().getSimpleName(), context.getString(R.string.update_book_error_msg) + e);
+                Log.e(context.getClass().getSimpleName(), context.getString(R.string.find_book_error_msg) + e);
             } finally {
                 cursor.close();
             }

@@ -25,12 +25,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
+import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
-import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
 
 public class BookEditor extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -248,7 +248,6 @@ public class BookEditor extends AppCompatActivity implements
             }
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

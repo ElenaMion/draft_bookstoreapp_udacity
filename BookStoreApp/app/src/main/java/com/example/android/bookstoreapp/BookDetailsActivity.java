@@ -15,11 +15,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 
 public class BookDetailsActivity extends AppCompatActivity implements
         android.app.LoaderManager.LoaderCallbacks<Cursor> {
@@ -64,38 +64,35 @@ public class BookDetailsActivity extends AppCompatActivity implements
         setContentView(R.layout.book_details);
         unbinder = ButterKnife.bind(this);
 
-        // Examine the intent that was used to launch this activity,
-        // in order to figure out if a user wants to create a new supplier or edit an existing one.
         Intent intent = getIntent();
         mCurrentBookDetUri = intent.getData();
 
         getLoaderManager().initLoader(BOOK_DETAILS_LOADER, null, this);
 
         Bundle arguments = new Bundle();
-        arguments.putString("currentBookDetId", String.valueOf(ContentUris.parseId(mCurrentBookDetUri)));
+        String currentBookIdStr = String.valueOf(ContentUris.parseId(mCurrentBookDetUri));
+        currentBookId = Integer.parseInt(currentBookIdStr);
+        arguments.putString("currentBookDetId", currentBookIdStr);
         bookSuppliers = new SupplierFragment();
         bookSuppliers.setArguments(arguments);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.supplier_scroll_book_details, bookSuppliers).commit();
 
         bookDetailsLayout.setOnClickListener(new View.OnClickListener() {
-                                                 @Override
-                                                 public void onClick(View v) {
-                                                     Intent intent = new Intent(BookDetailsActivity.this, BookEditor.class);
-                                                     Log.e(LOG_TAG, "mCurrentBookDetUri in book details " + mCurrentBookDetUri);
-
-                                                     intent.setData(mCurrentBookDetUri);
-                                                     startActivity(intent);
-                                                 }
-                                             }
-
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookDetailsActivity.this, BookEditor.class);
+                intent.setData(mCurrentBookDetUri);
+                startActivity(intent);
+                }
+            }
         );
 
         decreaseQuantityStock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int newQuantity = currentQuantityInStock - 1;
-                int bookRowsupdated = MyUtils.updateQuantity(BookDetailsActivity.this, currentBookId, newQuantity);
+                MyUtils.updateQuantity(BookDetailsActivity.this, currentBookId, newQuantity);
             }
         });
 
@@ -103,7 +100,7 @@ public class BookDetailsActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 int newQuantity = currentQuantityInStock + 1;
-                int bookRowsupdated = MyUtils.updateQuantity(BookDetailsActivity.this, currentBookId, newQuantity);
+                MyUtils.updateQuantity(BookDetailsActivity.this, currentBookId, newQuantity);
             }
         });
     }
@@ -128,19 +125,18 @@ public class BookDetailsActivity extends AppCompatActivity implements
         // Proceed with moving to the first (and only) row of the cursor and reading data from it
         if (cursor.moveToFirst()) {
             // Find the columns of book attributes that we're interested in
-            int idColumnIndex = cursor.getColumnIndex(BookEntry._ID);
             int nameColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_NAME);
             int authorColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_AUTHOR);
             int genreColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_GENRE);
             int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRICE);
             int quantityStColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_QUANTITY_IN_STOCK);
+
             // Read the book attributes from the Cursor for the current book
-            currentBookId = cursor.getInt(idColumnIndex);
             String bookName = cursor.getString(nameColumnIndex);
             String author = cursor.getString(authorColumnIndex);
             String genre = MyUtils.displayGenre(BookDetailsActivity.this, cursor.getInt(genreColumnIndex));
             String price = getString(R.string.currency) + MyUtils.displayPrice(cursor.getString(priceColumnIndex));
-           currentQuantityInStock = cursor.getInt(quantityStColumnIndex);
+            currentQuantityInStock = cursor.getInt(quantityStColumnIndex);
 
             // Update the TextViews with the attributes for the current book
             tvBookName.setText(bookName);

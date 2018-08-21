@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -21,9 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.android.bookstoreapp.data.BookStoreContract;
-import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
 import com.example.android.bookstoreapp.data.BookStoreContract.DeliveryEntry;
+import com.example.android.bookstoreapp.data.BookStoreContract.SupplierEntry;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,10 +43,9 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
     private Uri mCurrentBookDetUri;
 
     SupplierCursorAdapter mAdapter;
-    private static final int LOADER_ID = 2;
+    private static final int SUPPLIER_LOADER_ID = 2;
     static final String[] SUPPLIER_PROJECTION = new String[]{SupplierEntry.TABLE_NAME + "." + SupplierEntry._ID, SupplierEntry.COLUMN_SUPPLIER_NAME, SupplierEntry.COLUMN_PHONE, SupplierEntry.COLUMN_ADDRESS};
     static final String SUPPLIER_SORT_ORDER = SupplierEntry.COLUMN_SUPPLIER_NAME + " ASC ";
-
 
     public SupplierFragment() {
     }
@@ -59,12 +56,14 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
         View view = inflater.inflate(R.layout.supplier_item_list, container, false);
         // Find the ListView which will be populated with the supplier data
         unbinder = ButterKnife.bind(this, view);
+        //check if the list is in a separate supplier fragment or a list of suppliers for a certain book
         if (getArguments() != null) {
             try {
                 Long currentBookDetUri = Long.parseLong(getArguments().get("currentBookDetId").toString());
                 mCurrentBookDetUri = ContentUris.withAppendedId(DeliveryEntry.CONTENT_URI_WITH_BOOK, currentBookDetUri);
                 Log.e(LOG_TAG, "mCurrentBookDetUri " + mCurrentBookDetUri);
                 fabSupplier.setVisibility(View.GONE);
+                supplierEmptyView.setText(R.string.no_suppliers_for_book);
             } catch (IllegalArgumentException e) {
                 Log.e(LOG_TAG, "Cannot parse URI for book details. " + e.toString());
             }
@@ -96,7 +95,7 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
             }
         });
 
-        getActivity().getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        getActivity().getSupportLoaderManager().initLoader(SUPPLIER_LOADER_ID, null, this);
         return view;
     }
 
@@ -114,7 +113,7 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
         if (mCurrentBookDetUri == null) {
             return new CursorLoader(getContext(), SupplierEntry.CONTENT_URI,
                     SUPPLIER_PROJECTION, null, null, SUPPLIER_SORT_ORDER);
-        } else{
+        } else {
             return new CursorLoader(getContext(), mCurrentBookDetUri,
                     SUPPLIER_PROJECTION, null, null, SUPPLIER_SORT_ORDER);
         }
@@ -122,8 +121,7 @@ public class SupplierFragment extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        // Swap the new cursor in. (The framework will take care of closing the
-        // old cursor once we return.)
+        Log.e(LOG_TAG, "Suppliers onLoadFinished ");
         mAdapter.swapCursor(data);
     }
 

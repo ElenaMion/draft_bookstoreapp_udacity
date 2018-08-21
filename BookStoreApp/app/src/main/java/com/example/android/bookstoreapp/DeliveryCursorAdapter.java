@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 
 public class DeliveryCursorAdapter extends CursorAdapter {
 
-
     public DeliveryCursorAdapter(Context context, Cursor c) {
         super(context, c, 0);
     }
@@ -34,7 +33,6 @@ public class DeliveryCursorAdapter extends CursorAdapter {
      */
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-
         View view = LayoutInflater.from(context).inflate(R.layout.delivery_item, parent, false);
         DeliveryViewHolder viewHolder = new DeliveryViewHolder(view);
         view.setTag(viewHolder);
@@ -65,7 +63,7 @@ public class DeliveryCursorAdapter extends CursorAdapter {
         String quantityDelivered = cursor.getString(quantityDelivColumnIndex) + context.getString(R.string.pcs_delivered);
 
         String date = cursor.getString(dateColumnIndex);
-        if (!TextUtils.isEmpty(date)){
+        if (!TextUtils.isEmpty(date)) {
             date = MyUtils.displayDate(cursor.getString(dateColumnIndex));
         }
 
