@@ -123,6 +123,13 @@ public class SupplierEditor extends AppCompatActivity implements
                 TextUtils.isEmpty(supplierNameStr) && TextUtils.isEmpty(phoneStr) &&
                 TextUtils.isEmpty(addressStr)) {
             // Since no fields were modified, we can return early without creating a new supplier.
+            Toast.makeText(this, R.string.all_fields_empty_msg,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+            //in order to go to the suppliers list after a supplier was edited - including when the supplier was edited from the BookDetailsActivity
+            Intent intent = new Intent(SupplierEditor.this, MainActivity.class);
+            intent.putExtra("EXTRA_PAGE", "1");
+            startActivity(intent);
             return;
         }
 
@@ -144,6 +151,11 @@ public class SupplierEditor extends AppCompatActivity implements
                 // Otherwise, the insertion was successful and we can display a toast.
                 Toast.makeText(this, R.string.supplier_editor_insert_success,
                         Toast.LENGTH_SHORT).show();
+                finish();
+                //in order to go to the suppliers list after a supplier was edited - including when the supplier was edited from the BookDetailsActivity
+                Intent intent = new Intent(SupplierEditor.this, MainActivity.class);
+                intent.putExtra("EXTRA_PAGE", "1");
+                startActivity(intent);
             }
         } else {
             // Otherwise this is an EXISTING supplier
@@ -161,6 +173,11 @@ public class SupplierEditor extends AppCompatActivity implements
                 // Otherwise, the update was successful and we can display a toast.
                 Toast.makeText(this, R.string.supplier_editor_update_success,
                         Toast.LENGTH_SHORT).show();
+                finish();
+                //in order to go to the suppliers list after a supplier was edited - including when the supplier was edited from the BookDetailsActivity
+                Intent intent = new Intent(SupplierEditor.this, MainActivity.class);
+                intent.putExtra("EXTRA_PAGE", "1");
+                startActivity(intent);
             }
         }
     }
@@ -250,11 +267,6 @@ public class SupplierEditor extends AppCompatActivity implements
                             Toast.LENGTH_LONG).show();
                     Log.e(LOG_TAG, "Can't save supplier: IllegalArgumentException " + e.toString());
                 }
-                finish();
-                //in order to go to the suppliers list after a supplier was edited - including when the supplier was edited from the BookDetailsActivity
-                Intent intent = new Intent(SupplierEditor.this, MainActivity.class);
-                intent.putExtra("EXTRA_PAGE", "1");
-                startActivity(intent);
 
                 return true;
             // Respond to a click on the "Delete" menu option

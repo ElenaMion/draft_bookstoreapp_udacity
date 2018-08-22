@@ -60,6 +60,9 @@ public class BookEditor extends AppCompatActivity implements
     @BindView(R.id.book_editor_hint)
     TextView mBookEditorHint;
 
+    @BindView(R.id.edit_stock_quantity)
+    EditText mQuantityInStockEditText;
+
     private int mGenre = BookEntry.GENRE_UNKNOWN;
 
     Unbinder unbinder;
@@ -163,6 +166,7 @@ public class BookEditor extends AppCompatActivity implements
         String bookNameStr = mBookNameEditText.getText().toString().trim();
         String bookAuthorStr = mAuthorEditText.getText().toString().trim();
         String priceStr = mPriceEditText.getText().toString().trim();
+        String quantityInStockStr = mQuantityInStockEditText.getText().toString().trim();
 
         int bookExists = MyUtils.bookExistsInDB(this, bookNameStr, bookAuthorStr);
 
@@ -170,7 +174,9 @@ public class BookEditor extends AppCompatActivity implements
         // and check if all the fields in the editor are blank
         if (mCurrentBookUri == null && bookExists == -1 &&
                 TextUtils.isEmpty(bookNameStr) && TextUtils.isEmpty(bookAuthorStr) &&
-                TextUtils.isEmpty(priceStr) && mGenre == BookEntry.GENRE_UNKNOWN) {
+                TextUtils.isEmpty(priceStr) && TextUtils.isEmpty(quantityInStockStr) && mGenre == BookEntry.GENRE_UNKNOWN) {
+            Toast.makeText(this, R.string.all_fields_empty_msg,
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -180,10 +186,17 @@ public class BookEditor extends AppCompatActivity implements
             price = Integer.parseInt(priceStr);
         }
 
+        // If the quantity in stock is not provided by the user, use 0 by default.
+        int quantityInStock = 0;
+        if (!TextUtils.isEmpty(quantityInStockStr)) {
+            quantityInStock = Integer.parseInt(quantityInStockStr);
+        }
+
         ContentValues values = new ContentValues();
         values.put(BookEntry.COLUMN_BOOK_NAME, bookNameStr);
         values.put(BookEntry.COLUMN_BOOK_AUTHOR, bookAuthorStr);
         values.put(BookEntry.COLUMN_PRICE, price);
+        values.put(BookEntry.COLUMN_QUANTITY_IN_STOCK, quantityInStock);
         values.put(BookEntry.COLUMN_GENRE, mGenre);
 
         // Determine if this is a new or existing book
@@ -199,6 +212,7 @@ public class BookEditor extends AppCompatActivity implements
                 // Otherwise, the insertion was successful and we can display a toast.
                 Toast.makeText(this, R.string.book_editor_insert_success,
                         Toast.LENGTH_SHORT).show();
+                finish();
             }
         } else {
             // Otherwise this is an EXISTING book
@@ -216,6 +230,7 @@ public class BookEditor extends AppCompatActivity implements
                 // Otherwise, the update was successful and we can display a toast.
                 Toast.makeText(this, R.string.book_editor_update_success,
                         Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }
@@ -278,7 +293,6 @@ public class BookEditor extends AppCompatActivity implements
                             Toast.LENGTH_LONG).show();
                     Log.e(LOG_TAG, "Can't save book: IllegalArgumentException " + e.toString());
                 }
-                finish();
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -349,7 +363,8 @@ public class BookEditor extends AppCompatActivity implements
                 BookEntry.COLUMN_BOOK_NAME,
                 BookEntry.COLUMN_BOOK_AUTHOR,
                 BookEntry.COLUMN_GENRE,
-                BookEntry.COLUMN_PRICE};
+                BookEntry.COLUMN_PRICE,
+                BookEntry.COLUMN_QUANTITY_IN_STOCK};
 
         return new CursorLoader(this,
                 mCurrentBookUri,
@@ -373,17 +388,20 @@ public class BookEditor extends AppCompatActivity implements
             int authorColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_BOOK_AUTHOR);
             int genreColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_GENRE);
             int priceColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_PRICE);
+            int quantityInStockColumnIndex = cursor.getColumnIndex(BookEntry.COLUMN_QUANTITY_IN_STOCK);
 
             // Read the book attributes from the Cursor for the current book
             String bookName = cursor.getString(nameColumnIndex);
             String author = cursor.getString(authorColumnIndex);
             int genre = cursor.getInt(genreColumnIndex);
             int price = cursor.getInt(priceColumnIndex);
+            int quantityInStock = cursor.getInt(quantityInStockColumnIndex);
 
             // Update the TextViews with the attributes for the current book
             mBookNameEditText.setText(bookName);
             mAuthorEditText.setText(author);
             mPriceEditText.setText("" + price);
+            mQuantityInStockEditText.setText("" + quantityInStock);
 
             switch (genre) {
                 case BookEntry.GENRE_FANTASY:

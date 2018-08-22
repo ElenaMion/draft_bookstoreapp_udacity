@@ -98,6 +98,38 @@
 
     </LinearLayout>
 
-    <!--quantity field is not added here since there are plenty of other ways to edit quantity, e.g., adding a delivery or using Sale and +/- buttons -->
+    <!-- Ok, I added the quantity field here.
+     But I still consider the +/- buttons and this EditText almost unnecessary
+     since the quantity should be added through a delivery,
+     and the quantity should be reduced when the item is sold, using a Sale button.
+     Well, I guess there could be some use cases when changing the quantity in stock could be appropriate -
+     e.g. when entering an initial state of db or
+     if there was a defect in a large amount of books and they all are getting removed from stock.
+     But normally imho it would be weird if some books appeared from nowhere without being delivered by a supplier;
+     and if an employee just decides to decrease the amount of books in stock - he may be stealing :) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <!-- Label -->
+        <TextView
+            style="@style/EditorLabelStyle"
+            android:text="@string/quantity_in_stock_label_book_editor" />
+
+        <!-- Quantity delivered field -->
+        <EditText
+            android:id="@+id/edit_stock_quantity"
+            style="@style/EditorFieldStyle"
+            android:hint="@string/quantity_in_stock_label_book_editor"
+            android:inputType="number"
+            android:text="0" />
+
+        <!-- Units for quantity in stock (pcs) -->
+        <TextView
+            android:id="@+id/label_quantity_units"
+            style="@style/EditorLabelStyle"
+            android:text="@string/pcs_label" />
+
+    </LinearLayout>
 </LinearLayout>

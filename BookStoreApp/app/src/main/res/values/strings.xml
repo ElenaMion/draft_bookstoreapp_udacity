@@ -103,4 +103,8 @@
     <string name="find_supplier_error_msg">An error occured while searching for the supplier</string>
     <string name="find_book_error_msg">An error occured while searching for the book</string>
     <string name="no_suppliers_for_book">No suppliers for the given book.</string>
+    <string name="all_fields_empty_msg">All fields were empty</string>
+    <string name="quantity_in_stock_label_book_editor">Quantity in Stock*</string>
+    <string name="supplier_empty_delivery_msg">Supplier fields are empty. Please enter all the required fields.</string>
+    <string name="book_empty_delivery_msg">Book fields are empty. Please enter all the required fields.</string>
 </resources>

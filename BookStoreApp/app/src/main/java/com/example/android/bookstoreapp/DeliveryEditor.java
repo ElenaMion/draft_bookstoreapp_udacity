@@ -192,6 +192,7 @@ public class DeliveryEditor extends AppCompatActivity {
                 // Otherwise, the insertion was successful and we can display a toast.
                 Toast.makeText(this, R.string.delivery_editor_insert_success,
                         Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }
@@ -214,6 +215,8 @@ public class DeliveryEditor extends AppCompatActivity {
         if (bookExists == -1 &&
                 TextUtils.isEmpty(bookNameStr) && TextUtils.isEmpty(bookAuthorStr) &&
                 TextUtils.isEmpty(priceStr) && mGenre == BookEntry.GENRE_UNKNOWN) {
+            Toast.makeText(this, getString(R.string.book_empty_delivery_msg),
+                    Toast.LENGTH_SHORT).show();
             return -1;
         }
 
@@ -247,9 +250,7 @@ public class DeliveryEditor extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return -1; //error occured, couldn't insert new book
             } else {
-                // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, R.string.book_editor_insert_success,
-                        Toast.LENGTH_SHORT).show();
+                // Otherwise, the insertion was successful
                 int newBookId = Integer.parseInt(String.valueOf(ContentUris.parseId(newUri)));
                 return newBookId;
             }
@@ -286,9 +287,7 @@ public class DeliveryEditor extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return -1; //error occured, couldn't update the book
             } else {
-                // Otherwise, the update was successful and we can display a toast.
-                Toast.makeText(this, R.string.book_editor_update_success,
-                        Toast.LENGTH_SHORT).show();
+                // Otherwise, the update was successful
                 return bookExists; //after updating the book, return it's _ID
             }
         }
@@ -310,6 +309,8 @@ public class DeliveryEditor extends AppCompatActivity {
         if (supplierExists == -1 &&
                 TextUtils.isEmpty(supplierNameStr) && TextUtils.isEmpty(phoneStr) &&
                 TextUtils.isEmpty(addressStr)) {
+            Toast.makeText(this, R.string.supplier_empty_delivery_msg,
+                    Toast.LENGTH_SHORT).show();
             return -1;
         }
 
@@ -328,9 +329,7 @@ public class DeliveryEditor extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return -1; //error occured, couldn't insert new supplier
             } else {
-                // Otherwise, the insertion was successful and we can display a toast.
-                Toast.makeText(this, R.string.supplier_editor_insert_success,
-                        Toast.LENGTH_SHORT).show();
+                // Otherwise, the insertion was successful
                 int newSupplierId = Integer.parseInt(String.valueOf(ContentUris.parseId(newUri)));
                 return newSupplierId;
             }
@@ -348,9 +347,7 @@ public class DeliveryEditor extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return -1; //error occured, couldn't update the supplier
             } else {
-                // Otherwise, the update was successful and we can display a toast.
-                Toast.makeText(this, R.string.supplier_editor_update_success,
-                        Toast.LENGTH_SHORT).show();
+                // Otherwise, the update was successful
                 return supplierExists; //after updating the supplier, return it's _ID
             }
         }
@@ -375,7 +372,6 @@ public class DeliveryEditor extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                     Log.e(LOG_TAG, "Can't save delivery: IllegalArgumentException " + e.toString());
                 }
-                finish();
                 return true;
 
             // Respond to a click on the "Up" arrow button in the app bar
